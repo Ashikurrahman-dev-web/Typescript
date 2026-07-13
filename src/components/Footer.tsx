@@ -1,13 +1,13 @@
 const Footer = () => {
   return (
-    <footer className="bg-slate-700/65 mt-20 text-gray-400 px-6 md:px-16 py-16">
+    <footer className="bg-slate-700/65 mt-20 text-gray-300 px-6 md:px-16 py-16">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <h1 className="text-6xl md:text-7xl font-bold text-white">
             E-Commerce
           </h1>
           <p className="mt-4 max-w-xl">
-    Your dream products are just a click away. Explore our curated collection and find the perfect items to enhance your lifestyle.
+Your dream products are just a click away. Explore our curated collection and find the perfect items to enhance your lifestyle.
           </p>
         </div>
 
@@ -19,15 +19,6 @@ const Footer = () => {
             <p className="mb-4 text-sm">
               Subscribe for exclusive offers and inspiration.
             </p>
-
-            <div className="flex items-center bg-gray-800 px-4 py-3">
-              <input
-                type="email"
-                placeholder="Enter email"
-                className="bg-transparent outline-none flex-1 text-sm"
-              />
-              <span className="text-white text-lg">↗</span>
-            </div>
           </div>
 
           {/* Quick Links */}

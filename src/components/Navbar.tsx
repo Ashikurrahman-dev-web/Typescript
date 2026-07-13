@@ -7,17 +7,22 @@ import { FaUser, FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { authClient, useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import { Settings } from "lucide-react";
 
 export default function Navbar() {
   const router = useRouter();
   const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        // event.target is EventTarget which may not be a Node, so cast to Node for contains()
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setDropdownOpen(false);
       }
     }
@@ -60,32 +65,39 @@ export default function Navbar() {
           pathname === "/"
             ? "text-cyan-500 font-semibold"
             : "text-slate-300 hover:text-white"
-        }`}
-      >
+        }`}>
         Home
       </Link>
 
       <Link
-        href="/request"
+        href="/products"
         className={`text-sm font-medium transition-colors ${
-          pathname.startsWith("/request")
+          pathname.startsWith("/products")
             ? "text-cyan-500 font-semibold"
             : "text-slate-300 hover:text-white"
-        }`}
-      >
+        }`}>
         Products
+      </Link>
+      <Link
+        href="/my-bookings"
+        className={`text-sm font-medium transition-colors ${
+          pathname.startsWith("/my-bookings")
+            ? "text-cyan-500 font-semibold"
+            : "text-slate-300 hover:text-white"
+        }`}>
+        My Bookings
       </Link>
 
       {session && (
         <Link
-          href="/funding"
+          href="/addproduct"
           className={`text-sm font-medium transition-colors ${
-            pathname.startsWith("/funding")
+            pathname.startsWith("/addproduct")
               ? "text-cyan-500 font-semibold"
               : "text-slate-300 hover:text-white"
           }`}
         >
-          Booking
+          Add Product
         </Link>
       )}
     </div>
@@ -110,10 +122,10 @@ export default function Navbar() {
           </button>
 
           {dropdownOpen && (
-            <div className="absolute right-0 mt-3 w-56 bg-slate-900 border border-white/10 rounded-2xl shadow-xl py-2">
+<div className="absolute right-0 mt-3 w-56 bg-slate-700 border border-white/10 rounded-2xl shadow-xl py-2">
               <div className="px-4 py-2 border-b border-white/10">
                 <p className="text-cyan-500 text-xs font-bold">
-                  {session.user.role} Account
+                  {((session.user as { role?: string })?.role ?? "User") + " Account"}
                 </p>
                 <p className="text-white font-semibold">
                   {session.user.name}
@@ -122,19 +134,13 @@ export default function Navbar() {
                   {session.user.email}
                 </p>
               </div>
-
-              <Link
-                href={`/dashboard/${session.user.role}`}
-                className="flex items-center gap-2 px-4 py-2 text-slate-300 hover:bg-white/5"
-              >
-                <FaUser />
-                Dashboard
-              </Link>
-
-              <button
-                onClick={handleLogout}
-                className="w-full flex items-center gap-2 px-4 py-2 text-cyan-400 hover:bg-cyan-500/10"
-              >
+<Link href={"/profile"}
+      className="w-full flex items-center gap-2 px-4 py-2 text-cyan-400 hover:bg-cyan-500/10">
+        <Settings className="w-5 h-5" />
+                Profile
+              </Link>              
+<button onClick={handleLogout}
+      className="w-full flex items-center gap-2 px-4 py-2 text-cyan-400 hover:bg-cyan-500/10">
                 <FaSignOutAlt />
                 Logout
               </button>
@@ -154,14 +160,14 @@ export default function Navbar() {
       {/* Login/Register Desktop */}
       {!session && (
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/login">
+          <Link href="/signin">
             <button className="text-slate-300 hover:text-white">
               Login
             </button>
           </Link>
 
           <Link
-            href="/registration"
+            href="/signup"
             className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-xl"
           >
             SignUp
@@ -185,27 +191,34 @@ export default function Navbar() {
         </Link>
 
         <Link
-          href="/request"
+          href="/products"
           onClick={() => setMenuOpen(false)}
           className="text-slate-300"
         >
-          Donation Requests
+          Products
+        </Link>
+        <Link
+          href="/my-bookings"
+          onClick={() => setMenuOpen(false)}
+          className="text-slate-300"
+        >
+          My Bookings
         </Link>
 
         {session && (
           <Link
-            href="/funding"
+            href="/addproduct"
             onClick={() => setMenuOpen(false)}
             className="text-slate-300"
           >
-            Funding
+            Add Product
           </Link>
         )}
 
         {!session && (
           <>
             <Link
-              href="/login"
+              href="/signin"
               onClick={() => setMenuOpen(false)}
               className="text-slate-300"
             >
@@ -213,10 +226,9 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/registration"
+              href="/signup"
               onClick={() => setMenuOpen(false)}
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center py-2 rounded-xl"
-            >
+className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-center py-2 rounded-xl">
               SignUp
             </Link>
           </>

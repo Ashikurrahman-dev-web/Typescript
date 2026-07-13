@@ -92,8 +92,8 @@ const SignUp = () => {
 
     return (
         <div className="min-h-screen py-12 px-4 flex items-center justify-center">
-<Card className="w-full max-w-xl bg-slate-900 border border-white/5 py-8 px-6 sm:px-8 shadow-2xl rounded-2xl">
-<h1 className="text-center text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-pink-500 mb-2">Sign Up</h1>
+<Card className="w-full max-w-xl bg-slate-700 border border-white/5 py-8 px-6 sm:px-8 shadow-2xl rounded-2xl">
+<h1 className="text-center text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 mb-2">Sign Up</h1>
 
 
                 <Form onSubmit={onSubmit} className="flex w-full flex-col gap-5">
@@ -101,7 +101,7 @@ const SignUp = () => {
                     {/* Image Profile Upload */}
                     <div className="flex flex-col items-center gap-3 mb-4 w-full">
                         <div className="relative">
-<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-red-500 shadow-lg bg-slate-800">
+<div className="w-24 h-24 rounded-full overflow-hidden border-2 border-cyan-500 shadow-lg bg-slate-700">
                                 {preview ? (
 <img src={preview} alt="Profile Preview" className="w-full h-full object-cover" />
                                 ) : (
@@ -110,7 +110,7 @@ const SignUp = () => {
                                     </div>
                                 )}
                             </div>
-<label htmlFor="image" className="absolute bottom-0 right-0 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full cursor-pointer shadow-lg transition">
+<label htmlFor="image" className="absolute bottom-0 right-0 bg-cyan-500 hover:bg-cyan-600 text-white p-2 rounded-full cursor-pointer shadow-lg transition">
                                 <FaCamera size={12} />
                             </label>
                         </div>
@@ -157,7 +157,7 @@ const SignUp = () => {
                     </div>
 
                     <div className="flex gap-3 mt-4">
-<Button className='flex-1 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold h-11 rounded-xl shadow-lg' type="submit" isDisabled={loading}>
+<Button className='flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold h-11 rounded-xl shadow-lg' type="submit" isDisabled={loading}>
                             <Check /> {loading ? "Signing Up..." : "SignUp"}
                         </Button>
                     </div>

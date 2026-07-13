@@ -43,8 +43,8 @@ router.push("/");
 const [isShowPassword, setIsShowPassword] = useState(false);
     return (
       <div className="min-h-screen py-12 px-4 flex items-center justify-center">
-<Card className="w-full max-w-xl bg-slate-900 border border-white/5 py-8 px-6 sm:px-8 shadow-2xl rounded-2xl">
-<h1 className="text-center text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-pink-400 mb-2">Sign In</h1>
+<Card className="w-full max-w-xl bg-slate-700 border border-white/5 py-8 px-6 sm:px-8 shadow-2xl rounded-2xl">
+<h1 className="text-center text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-400 mb-2">Sign In</h1>
                      <Form onSubmit={onSubmit} className="flex w-full flex-col gap-5">
                           <TextField isRequired name="email" type="email" className="dark">
                                   <Label className="text-slate-300 text-xs font-semibold">Email</Label>
@@ -66,7 +66,7 @@ const [isShowPassword, setIsShowPassword] = useState(false);
                           </div>
       
                           <div className="flex gap-3 mt-4">
-  <Button className='flex-1 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold h-11 rounded-xl shadow-lg' type="submit" isDisabled={loading}>
+  <Button className='flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold h-11 rounded-xl shadow-lg' type="submit" isDisabled={loading}>
                               <Check /> {loading ? "Signing In..." : "SignIn"}
                               </Button>
                           </div>
